@@ -1,7 +1,6 @@
 import React, { createContext, useState, useRef, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
-import { Form } from 'react-router-dom';
 
 const SocketContext = createContext();
 
@@ -27,7 +26,14 @@ const ContextProvider = ({ children }) => {
       })
       .then((currentStream) => {
         setStream(currentStream);
-        myVideo.current.srcObject = currentStream;
+        
+        
+
+        if (myVideo.current) {
+          myVideo.current.srcObject = currentStream;
+        }
+
+        
       });
 
     socket.on('me', (id) => setMe(id));
@@ -47,7 +53,9 @@ const ContextProvider = ({ children }) => {
     });
 
     peer.on('stream', (currentStream) => {
-      userVideo.current.srcObject = currentStream;
+      if (userVideo.current) {
+        userVideo.current.srcObject = currentStream;
+      }
     });
 
     peer.signal(call.signal);
@@ -68,7 +76,9 @@ const ContextProvider = ({ children }) => {
     });
 
     peer.on('stream', (currentStream) => {
-      userVideo.current.srcObject = currentStream;
+      if (userVideo.current) {
+        userVideo.current.srcObject = currentStream;
+      }
     });
 
     socket.on('callaccepted', (signal) => {

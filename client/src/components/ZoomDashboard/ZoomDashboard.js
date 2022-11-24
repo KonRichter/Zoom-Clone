@@ -1,7 +1,7 @@
 import './ZoomDashboard.css';
 import React from 'react';
 import SingleVideo from '../SingleVideo/SingleVideo';
-import VideoPlayer from '../../VideoPlayer/VideoPlayer';
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
 import Options from '../Options/Options';
 import { Link } from 'react-router-dom';
 
